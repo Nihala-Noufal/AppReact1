@@ -6,20 +6,22 @@ import { useState } from "react/cjs/react.development";
 import { Form, Input, Button, Checkbox } from 'antd';
 //function AppContact(){
 
-    const AppContact =()=>
+    const AppContact =() =>
     {
       const [aFirstName,setAFirstName]=useState("");
       const [aPassWord,setAPassWord]=useState("");
+
+      const db = firebase.firestore().collection('User')
       const handleAddUser =()=>{
-        const rf = firebase.firestore().collection('User').add({
+        db.add({
           //firebase.firestore().collection('products').get().
                   firstName:aFirstName  ,
                   password:aPassWord,
               })
               
-             rf.push()
-              setAFirstName("");
-              setAPassWord("");
+            //  rf.push()
+            //   setAFirstName("");
+            //   setAPassWord("");
       
           };
     return(
@@ -55,7 +57,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
         </Form.Item>
   
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary"   onClick={{handleAddUser}}>
+          <Button type="primary"   onClick={handleAddUser}>
             Submit
           </Button>
         </Form.Item>
